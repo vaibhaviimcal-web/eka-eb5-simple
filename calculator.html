@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EB-5 Eligibility Calculator - EKA EB5 Consultants</title>
+    <meta name="description" content="Calculate your EB-5 visa eligibility in minutes with our free interactive calculator.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2>EKA EB5</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="calculator.html" class="active">Calculator</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html" class="btn-nav">Contact Us</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Calculator Container -->
+    <div class="calculator-wrapper">
+        <div class="calculator-container">
+            <!-- Header -->
+            <div class="calculator-header">
+                <h1>EB-5 Eligibility Calculator</h1>
+                <p>Answer a few questions to check your eligibility</p>
+            </div>
+
+            <!-- Question 1: Investment Capacity -->
+            <div class="question-card active" id="q1">
+                <h2>What is your investment capacity?</h2>
+                <div class="options">
+                    <button class="option-btn" onclick="selectOption('q1', '$800,000 - $1,050,000', 25)">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>$800,000 - $1,050,000</span>
+                        <small>Standard EB-5 investment</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption('q1', 'Above $1,050,000', 25)">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Above $1,050,000</span>
+                        <small>Flexible investment options</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption('q1', 'Below $800,000', 0)">
+                        <i class="fas fa-times-circle"></i>
+                        <span>Below $800,000</span>
+                        <small>May not qualify</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 2: Source of Funds -->
+            <div class="question-card" id="q2">
+                <h2>Can you document the source of your investment funds?</h2>
+                <div class="options">
+                    <button class="option-btn" onclick="selectOption('q2', 'Yes, fully documented', 25)">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Yes, fully documented</span>
+                        <small>Tax returns, bank statements, etc.</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption('q2', 'Partially documented', 15)">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Partially documented</span>
+                        <small>Some documentation available</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption('q2', 'No documentation', 0)">
+                        <i class="fas fa-times-circle"></i>
+                        <span>No documentation</span>
+                        <small>Cannot prove source</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 3: Criminal Record -->
+            <div class="question-card" id="q3">
+                <h2>Do you have any criminal record?</h2>
+                <div class="options">
+                    <button class="option-btn" onclick="selectOption('q3', 'No criminal record', 25)">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>No criminal record</span>
+                        <small>Clean background</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption('q3', 'Minor offenses', 10)">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Minor offenses</span>
+                        <small>Traffic violations, etc.</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption('q3', 'Serious offenses', 0)">
+                        <i class="fas fa-ban"></i>
+                        <span>Serious offenses</span>
+                        <small>May be inadmissible</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 4: Timeline -->
+            <div class="question-card" id="q4">
+                <h2>When do you plan to start the EB-5 process?</h2>
+                <div class="options">
+                    <button class="option-btn" onclick="selectOption('q4', 'Within 3 months', 25)">
+                        <i class="fas fa-rocket"></i>
+                        <span>Within 3 months</span>
+                        <small>Ready to start soon</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption('q4', '3-6 months', 20)">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>3-6 months</span>
+                        <small>Planning ahead</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption('q4', 'More than 6 months', 15)">
+                        <i class="fas fa-clock"></i>
+                        <span>More than 6 months</span>
+                        <small>Long-term planning</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="question-card" id="results" style="display: none;">
+                <div class="results-content">
+                    <div class="score-circle">
+                        <div class="score-value" id="scoreValue">0</div>
+                        <div class="score-label">Eligibility Score</div>
+                    </div>
+                    <h2 id="resultTitle">Your EB-5 Eligibility</h2>
+                    <p id="resultMessage"></p>
+                    
+                    <div class="result-details">
+                        <h3>Your Answers:</h3>
+                        <ul id="answersList"></ul>
+                    </div>
+
+                    <div class="result-actions">
+                        <a href="https://calendly.com/eka-eb5" target="_blank" class="btn btn-primary btn-large">
+                            <i class="fas fa-calendar"></i> Book Free Consultation
+                        </a>
+                        <a href="https://wa.me/917979007970" target="_blank" class="btn btn-secondary btn-large">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Us
+                        </a>
+                        <button onclick="restartCalculator()" class="btn btn-outline">
+                            <i class="fas fa-redo"></i> Start Over
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="currentQuestion">Question 1</span> of 4
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EKA EB5 Consultants</h3>
+                    <p>Your trusted partner for EB-5 visa success</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="calculator.html">Calculator</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +91 797 900 7970</li>
+                        <li><i class="fas fa-envelope"></i> info@ekaeb5.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EKA EB5 Consultants. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/917979007970" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+    <script src="calculator.js"></script>
+</body>
+</html>
